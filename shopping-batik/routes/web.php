@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\{PesanController,HomeController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('pesan/{id}', [PesanController::class,'index'])->name('pesan.index');
+Route::post('pesan/{id}', [PesanController::class,'pesan'])->name('pesan.item');
+Route::get('keranjang', [PesanController::class,'keranjang'])->name('keranjang');
+Route::delete('keranjang/{id}', [PesanController::class,'delete'])->name('keranjang.delete');
+Route::get('konfirmasi-checkout', [PesanController::class,'konfirmasi'])->name('konfirmasi');

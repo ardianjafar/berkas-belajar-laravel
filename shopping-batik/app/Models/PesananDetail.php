@@ -9,6 +9,7 @@ class PesananDetail extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['barang_id','pesanan_id','jumlah','jumlah_harga']; 
     public function barang()
     {
         return $this->belongsTo(Barang::class,'barang_id','id');
