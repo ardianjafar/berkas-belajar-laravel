@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{PesanController,HomeController};
+use App\Http\Controllers\{PesanController,HomeController, ProfileController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +26,5 @@ Route::post('pesan/{id}', [PesanController::class,'pesan'])->name('pesan.item');
 Route::get('keranjang', [PesanController::class,'keranjang'])->name('keranjang');
 Route::delete('keranjang/{id}', [PesanController::class,'delete'])->name('keranjang.delete');
 Route::get('konfirmasi-checkout', [PesanController::class,'konfirmasi'])->name('konfirmasi');
+Route::get('profile', [ProfileController::class,'index'])->name('profile');
+Route::post('profile', [ProfileController::class,'simpan'])->name('profile.simpan');

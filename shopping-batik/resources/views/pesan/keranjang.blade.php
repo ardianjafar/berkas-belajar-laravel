@@ -34,7 +34,7 @@
                                         <form action="{{ route('keranjang.delete', $pesanan_detail->id) }}" method="post">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin akan menghapusnya ?...')"><i class="fa fa-trash"></i></button>
                                         </form>
                                     </th>
                                 </tr>
@@ -44,7 +44,7 @@
                                 <td><strong>Rp. {{ number_format($pesanan->jumlah_harga) }}</strong></td>
                                 <td>
                                     {{--  --}}
-                                    <a href="{{ route('konfirmasi') }}" class="btn btn-success btn-sm">
+                                    <a href="{{ route('konfirmasi') }}" onclick="return confirm('Anda yakin akan check-out ?...')" class="btn btn-success btn-sm">
                                         Konfirmasi
                                     </a>
                                 </td>
