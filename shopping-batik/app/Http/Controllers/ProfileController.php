@@ -28,8 +28,6 @@ class ProfileController extends Controller
         if(!empty($request->password)){
             $password = Hash::make($request->password);
         }
-
-        // password' => Hash::make($data['password'])
         $profile->update([
             'name'      => $request->name,
             'email'     => $request->email,
