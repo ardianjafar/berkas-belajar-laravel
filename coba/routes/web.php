@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\{PostController,LoginController};
 use App\Models\Category;
-use App\Models\Post;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,11 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', function () {
     return view('home',[
-        'title'     => "Home"
+        'active'    => "home"
     ]);
 });
 Route::get('/about', function () {
     return view('about',[
+        'active'    => "about",
         'title'     => "About",
         'name'      => "Ardian Ja'far",
         'gambar'    => "Manyan.jpg",
@@ -38,21 +37,10 @@ Route::get('/posts/{post:slug}', [PostController::class,'show']);
 
 Route::get('/categories', function () {
     return view('categories',[
-        'title'     => 'Post Categories',
+        'title'     => 'Post Categories', 
+        'active'    => "categories",
         'categories'     => Category::all(),
     ]);
 });
 
-Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('posts',[
-        'title'     => "Post by Category : " . $category->name,
-        'posts'     => $category->posts->load(['category','author']),
-    ]);
-});
-
-Route::get('/authors/{author:username}', function(User $author){
-    return view('posts',[
-        'title'     => "Posts by Author: " . $author->name,
-        'posts'     => $author->posts->load('category','author')
-    ]);
-});
+Route::get('/login', [LoginController::class,'index']);
