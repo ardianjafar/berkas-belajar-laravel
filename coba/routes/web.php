@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{PostController,LoginController};
+use App\Http\Controllers\{DashboardPostController, PostController,LoginController, RegisterController};
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home',[
+        'title'     => "Home",
         'active'    => "home"
     ]);
 });
@@ -43,4 +44,14 @@ Route::get('/categories', function () {
     ]);
 });
 
-Route::get('/login', [LoginController::class,'index']);
+Route::get('/login', [LoginController::class,'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class,'authenticate']);
+Route::post('/logout', [LoginController::class,'logout']);
+Route::get('/register', [RegisterController::class,'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class,'store']);
+Route::get('/dashboard', function() {
+   return view('dashboard.index'); 
+})->middleware('auth');
+
+Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class,'checkSLug'])->middleware('auth');
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');

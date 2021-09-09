@@ -24,7 +24,5 @@
                 <a href="/posts">Back to Blog</a>
             </div>
         </div>
-    </div>
-    
-    
+    </div>   
 @endsection
